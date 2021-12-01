@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="https://res.cloudinary.com/dcsjbuzp0/image/upload/v1635345870/VinylShop/logo_yjadyo.png" alt=""
+                width="30" height="30">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/vinyls" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Vinyls
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/vinyls/pop">Pop</a></li>
+                        <li><a class="dropdown-item" href="/vinyls/rock">Rock</a></li>
+                        <li><a class="dropdown-item" href="/vinyls/hiphop">Hip-Hop</a></li>
+                        <li><a class="dropdown-item" href="/vinyls/rnb">R&B</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/vinyls">All Vinyls</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/about">About</a>
+                </li>
+                <% if (currentUser && currentUser.role==='admin' ){ %>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/vinyls/new">Add Vinyl</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/allorders">All Orders</a>
+                    </li>
+                    <% } %>
+            </ul>
+            <div class="d-flex me-auto">
+                <form class="d-flex" action="/">
+                    <input name="search" class="form-control mx-auto" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-success mx-1" type="submit">Search</button>
+                </form>
+            </div>
+            <div class="navbar-brand">
+                <a href="/cart">
+                    <button type="button" class="btn btn-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-cart" viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                            </path>
+                        </svg>
+                        <span class="badge">
+                            <% if(!session.cart) { %>
+                                0
+                                <% } else { %>
+                                    <%= session.cart.totalQty %>
+                                        <% } %>
+                        </span>
+                    </button>
+
+            </div>
+            <div class="navbar-nav">
+                <% if (!currentUser) {%>
+                    <a href="/login" class="nav-link">Login</a>
+                    <a href="/register" class="nav-link">Register</a>
+                    <% } else { %>
+                        <a href="/profile" class="nav-link">Profile</a>
+                        <a href="/logout" class="nav-link">Logout</a>
+                        <% } %>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,48 @@
+<% layout('layouts/boilerplate')%>
+    <h1>R&B Vinyls</h1>
+    <div class="row mt-3">
+        <% for (let vinyl of vinyls) { %>
+            <div class="card col-3 m-3" style="width: 18rem;">
+                <a href="/vinyls/<%= vinyl._id %>">
+                    <img class="card-img-top" src="<%= vinyl.image %> " alt="Card image cap">
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title text-center">
+                        <a href="/vinyls/<%= vinyl._id %>" class="text-decoration-none text-dark">
+                            <%= vinyl.artist %> : <%= vinyl.album %>
+                        </a>
+                    </h4>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="d-flex flex-row">
+                            <% if (vinyl.price>20) { %>
+                                $<%= vinyl.price %>
+                                    <% if (vinyl.available>0){ %>
+                                        / In-Stock
+                                        <% } else {%>
+                                            / Sold Out
+                                            <% } %>
+                                                <% } else { %>
+                                                    <strike>$39.99</strike>
+                                                    $<%= vinyl.price %>
+                                                        <% if (vinyl.available>0){ %>
+                                                            / In-Stock
+                                                            <% } else {%>
+                                                                / Sold Out
+                                                                <% } %>
+                                                                    <span
+                                                                        class="text-dark bg-danger border rounded-pill px-2  ms-auto"><b>SALE</b></span>
+                                                                    <% } %>
+
+                        </div>
+                    </li>
+                </ul>
+                <div class="card-body d-inline-flex align-middle">
+                    <a href="/add-to-cart/<%=vinyl._id %>" type="button"
+                        class="btn btn-success m-auto <%= vinyl.available===0 ? 'disabled' : '' %>" id="addToCart"
+                        <%=vinyl.available===0 ? 'aria-disabled:"true"' : '' %>>Add To Cart</a>
+                </div>
+            </div>
+            <% } %>
+    </div>

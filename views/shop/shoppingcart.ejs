@@ -1,0 +1,64 @@
+<% layout('layouts/boilerplate')%>
+    <div class="row mb-4">
+        <% if (products && products.length!=0 ) { %>
+            <div class="col-10 offset-1 d-flex flex-column">
+                <ul class="list-group">
+                    <% for (let product of products) { %>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="<%= product.item.image %>" class="img-fluid" alt="...">
+                                </div>
+                                <div class="col-10 d-flex flex-column">
+                                    <h5>
+                                        <b>
+                                            <%= product.item.album %>
+                                        </b>
+                                    </h5>
+                                    <h7>
+                                        <%= product.item.artist %>
+                                    </h7>
+                                    <div class="d-flex mt-auto">
+                                        <h8>
+                                            <%= product.qty %> × <%= product.price %>$
+                                        </h8>
+                                        <div class="ms-auto">
+                                            <a type="button" href="/reduce/<%= product.item._id %>"
+                                                class="btn btn-danger">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                        d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
+                                                </svg>
+                                            </a>
+                                            <a type="button" href="/increment/<%= product.item._id %>"
+                                                class="btn btn-success">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="ms-auto mt-2">
+                                        <a class="btn btn-danger" type="button" href="/remove/<%= product.item._id %>">
+                                            Remove Item</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <% } %>
+                </ul>
+                <div class="mx-auto mt-3">
+                    <h1>Total : $<%= totalPrice %>
+                    </h1>
+                </div>
+                <a type="button" href="/checkout" class="btn btn-dark mt-3">Checkout</a>
+            </div>
+            <% } else { %>
+                <div class="col-10 offset-1">
+                    <h1>Your cart is empty</h1>
+                </div>
+                <% } %>
+    </div>

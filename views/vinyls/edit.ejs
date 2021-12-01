@@ -1,0 +1,45 @@
+<% layout('layouts/boilerplate')%>
+    <div class="row">
+        <h1 class="text-center">Edit Vinyl</h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/vinyls/<%=vinyl._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+                <div class="mb-3">
+                    <label class="form-label" for="album">Album Title:</label>
+                    <input class="form-control" type="text" id="album" name="vinyl[album]" value="<%=vinyl.album %>"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="artist">Artist</label>
+                    <input class="form-control" type="text" id="artist" name="vinyl[artist]" value="<%=vinyl.artist %>"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="price">Vinyl Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="price-label">$</span>
+                        <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                            aria-describedby="price-label" name="vinyl[price]" value="<%=vinyl.price %>" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="available">Amount Available</label>
+                    <input class="form-control" type="text" id="available" name="vinyl[available]"
+                        value="<%=vinyl.available %>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description" name="vinyl[description]"
+                        required><%= vinyl.description%></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image URL</label>
+                    <input class="form-control" type="text" id="image" name="vinyl[image]" value="<%=vinyl.image %>"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-info">Update Vinyl</button>
+                </div>
+            </form>
+            <a href="/vinyls/<%= vinyl._id%>">Back To Vinyl</a>
+        </div>
+    </div>

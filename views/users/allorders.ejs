@@ -1,0 +1,64 @@
+<% layout('layouts/boilerplate')%>
+    <% if (orders.length <=0) { %>
+        <h3>No orders yet.</h3>
+        <% } else {%>
+            <h1 class="mb-4">All orders</h1>
+            <% for (let order of orders){ %>
+                <div class="card mb-3 border p-2" style="width: 100%">
+                    <div class="card-header border d-flex d-row">
+                        <h5>
+                            Order ID: <%= order._id %>
+                        </h5>
+                        <div class="ms-auto">
+                            <h5>
+                                Total: $<%= order.cart.totalPrice %>
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="my-2">
+                            <h7>
+                                Full Name: <%= order.fullname %>
+                            </h7>
+                        </div>
+                        <div class="my-2">
+                            <h7>
+                                Email: <%= order.email %>
+                            </h7>
+                        </div>
+                        <div class="my-2">
+                            <h7>
+                                Address: <%= order.address %>
+                            </h7>
+                        </div>
+                        <div class="my-2">
+                            <h7>
+                                City: <%= order.city %>
+                            </h7>
+                        </div>
+                        <div class="my-2">
+                            <h7>
+                                Telephone Number: <%= order.phone %>
+                            </h7>
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush my-2 border">
+                        <% for (let item of order.items) {%>
+                            <li class="list-group-item">
+                                <div class="d-flex flex-row">
+                                    <h6>
+                                        <%= item.item.album %> - <%= item.item.artist %>
+                                    </h6>
+                                    <div class="ms-auto">
+                                        <h6>
+                                            $<%= item.price %> × <%= item.qty %>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </li>
+                            <% } %>
+                    </ul>
+                </div>
+                <% } %>
+                    <% } %>
+                        </div>

@@ -1,0 +1,37 @@
+<% layout('layouts/boilerplate')%>
+    <h1 class="mb-4">My Profile</h1>
+    <% if (orders.length <=0) { %>
+        <h3>No orders yet.</h3>
+        <% } else {%>
+            <h3>Orders:</h3>
+            <% for (let order of orders){ %>
+                <div class="card mb-3" style="width: 100%">
+                    <div class="card-header d-flex d-row">
+                        <h5>
+                            Order ID: <%= order._id %>
+                        </h5>
+                        <div class="ms-auto">
+                            <h4>
+                                Total: $<%= order.cart.totalPrice %>
+                            </h4>
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush ">
+                        <% for (let item of order.items) {%>
+                            <li class="list-group-item">
+                                <div class="d-flex flex-row">
+                                    <h7>
+                                        <%= item.item.album %> - <%= item.item.artist %>
+                                    </h7>
+                                    <div class="ms-auto">
+                                        <h7>
+                                            $<%= item.price %> × <%= item.qty %>
+                                        </h7>
+                                    </div>
+                                </div>
+                            </li>
+                            <% } %>
+                    </ul>
+                </div>
+                <% } %>
+                    <% } %>
